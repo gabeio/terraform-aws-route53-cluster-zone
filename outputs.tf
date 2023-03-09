@@ -29,6 +29,6 @@ output "fqdn" {
 }
 
 output "type" {
-  value       = local.enabled ? local.public_zone ? "public" : "private" : null
+  value       = module.this.enabled ? local.public_zone ? "public" : "private" : null
   description = "Whether this is a public or private zone"
 }
