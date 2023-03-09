@@ -42,7 +42,7 @@ resource "aws_route53_zone" "default" {
 }
 
 resource "aws_route53_record" "ns" {
-  count   = local.parent_zone_record_enabled && local.public_zone ? 1 : 0
+  count   = local.parent_zone_record_enabled == 1 && local.public_zone ? 1 : 0
   zone_id = join("", data.aws_route53_zone.parent_zone.*.zone_id)
   name    = join("", aws_route53_zone.default.*.name)
   type    = "NS"
