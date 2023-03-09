@@ -59,7 +59,7 @@ resource "aws_route53_record" "ns" {
 # Attempting to create an SOA for a private zone will fail with:
 # FATAL problem: DomainLabelEmpty (Domain label is empty)
 resource "aws_route53_record" "soa" {
-  count           = local.enabled && local.public_zone ? 1 : 0
+  count           = local.enabled == 1 && local.public_zone ? 1 : 0
   allow_overwrite = true
   zone_id         = join("", aws_route53_zone.default.*.id)
   name            = join("", aws_route53_zone.default.*.name)
